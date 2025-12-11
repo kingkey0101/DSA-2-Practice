@@ -1,0 +1,194 @@
+\*\* DSA Notes 2 \*\*
+
+\*\* 1. Bubble sort \*\*
+
+\*\* 
+
+The bubble sort algorithm is a simple, comparison-based sorting algorithm in computer science that repeatedly steps through a list, compares adjacent pairs of elements, and swaps them if they are in the wrong order. This process is repeated until no swaps are needed in a pass, indicating the list is sorted. 
+The name "bubble sort" comes from the way elements gradually "bubble" to their correct position; for an ascending sort, larger values "sink" to the bottom (end) of the list, while smaller values "rise" to the top (beginning)
+
+ \*\*
+
+
+
+\*\* For this question, basically sort the array in ascending order.
+
+EX: [9, 5, 2, 7, 8] -> bubble sort compares two nums at once next to each other(9,5 since they are the first two elems in the array.)
+- Is 5 > 9 or is 5 < 9 ? => 5 < 9
+- They are in the wrong order, so we need to swap them. -> [5, 9, 2, 7, 8]
+- Now, is 2 > 9 or is 2 < 9 ? => 2 < 9
+- They are in the wrong order; we need to swap them. -> [5, 2, 9, 7, 8]
+- Now, is 7 > 9 or is 7 < 9 ? => 7 < 9
+- They are in the wrong order; we need to swap them. -> [5, 2, 7, 9, 8]
+- Now, is 8 > 9 or is 8 < 9 ? => 8 < 9
+- They are in the wrong order; we need to swap them. -> [5, 2, 7, 8, 9]
+- Then iterate to the 5 and so on
+-  [2, 5, 7, 8, 9],then no more swaps are needed for this example.
+
+\*\*\ Solution:
+
+const bubbleSort = (nums) => {
+  for (let i = 0; i < nums.length; ++i) { // to loop the array (outer for loop, going through every element)
+    for (let j = 1; j < nums.length; ++j) { // to compare the two numbers and swap if needed
+      if (nums[j] < nums[j - 1]) { // if current num is smaller than previous, if so swap
+        let temp = nums[j]; // temp variable to hold the element while swapping so we don't lose it
+        nums[j] = nums[j - 1];
+        nums[j - 1] = temp;
+// swap if needed for ever elem in the array
+      }
+    }
+  }
+  return nums; // end of the loop
+};
+
+ \*\*\
+
+ \*\*
+
+
+
+\*\* @examples: \*\*
+
+
+\*\*  \*\*
+
+
+
+
+
+
+
+\*\* 1. Bubble sort \*\*
+
+\*\*  \*\*
+
+\*\* @examples: \*\*
+
+
+
+
+\*\* 1. Bubble sort \*\*
+
+\*\*  \*\*
+
+\*\* @examples: \*\*
+
+
+
+
+\*\* 1. Bubble sort \*\*
+
+\*\*  \*\*
+
+\*\* @examples: \*\*
+
+
+
+
+\*\* 1. Bubble sort \*\*
+
+\*\*  \*\*
+
+\*\* @examples: \*\*
+
+
+
+
+\*\* 1. Bubble sort \*\*
+
+\*\*  \*\*
+
+\*\* @examples: \*\*
+
+
+
+
+
+\*\* 1. Bubble sort \*\*
+
+\*\*  \*\*
+
+\*\* @examples: \*\*
+
+
+
+
+\*\* 1. Bubble sort \*\*
+
+\*\*  \*\*
+
+\*\* @examples: \*\*
+
+
+
+
+\*\* 1. Bubble sort \*\*
+
+\*\*  \*\*
+
+\*\* @examples: \*\*
+
+
+
+\*\* 1. Bubble sort \*\*
+
+\*\*  \*\*
+
+\*\* @examples: \*\*
+
+
+
+
+
+
+
+\*\* 1. Bubble sort \*\*
+
+\*\*  \*\*
+
+\*\* @examples: \*\*
+
+
+
+
+
+\*\* 1. Bubble sort \*\*
+
+\*\*  \*\*
+
+\*\* @examples: \*\*
+
+
+
+\*\* 1. Bubble sort \*\*
+
+\*\*  \*\*
+
+\*\* @examples: \*\*
+
+
+
+\*\* 1. Bubble sort \*\*
+
+\*\*  \*\*
+
+\*\* @examples: \*\*
+
+
+
+\*\* 1. Bubble sort \*\*
+
+\*\*  \*\*
+
+\*\* @examples: \*\*
+
+
+
+\*\* 1. Bubble sort \*\*
+
+\*\*  \*\*
+
+\*\* @examples: \*\*
+
+
+
