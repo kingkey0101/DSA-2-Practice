@@ -1,4 +1,4 @@
-\*\* DSA Notes 2 \*\*
+\*\* DSA Notes 2: Sorting\*\*
 
 \*\* 1. Bubble sort \*\*
 
@@ -25,6 +25,20 @@ EX: [9, 5, 2, 7, 8] -> bubble sort compares two nums at once next to each other(
 - Then iterate to the 5 and so on
 -  [2, 5, 7, 8, 9],then no more swaps are needed for this example.
 
+
+ \*\*
+
+
+
+\*\* @examples: \*\*
+bubbleSort([3, 2, 1]) -> [1, 2, 3]
+bubbleSort([0, 12, 8]) -> [0, 8, 12]
+bubbleSort([3, 4, 0, 2]) -> [0, 2, 3, 4]
+
+
+\*\*
+
+
 \*\*\ Solution:
 
 const bubbleSort = (nums) => {
@@ -43,152 +57,174 @@ const bubbleSort = (nums) => {
 
  \*\*\
 
+
+
+  \*\*
+
+
+
+
+
+
+
+\*\* 2. Selection sort \*\*
+
+\*\* Sort the 'nums' array using selection sort \*\*
+
+
+\*\* @examples: \*\*
+selectionSort([3, 2, 1]) -> [1, 2, 3]
+selectionSort([0, 12, 8]) -> [0, 8, 12]
+selectionSort([3, 4, 0, 2]) -> [0, 2, 3, 4]
+
+
+
+\*\* Sort in ascending order, similar to bubble sort, but no swapping of numbers just keeping track of them.  \*\*
+
+\*\* EX: [9, 5, 2, 7, 8] \*\*
+
+\*\* This method uses two pointers, one tracks the current minimum and current num.  
+- At the start, both pointers will be looking at the first element
+- (the current num isn't really a pointer, just to know what iteration in the for loop you are on.)
+- We have currMin, which keeps the current min in that array variable.
+- We start the loop at the first index(9 in this example), store that num in the currMin, then loop through the array, searching for a num smaller than num[i](9) and store it if you find a smaller number.
+
+- if current element (nums[i]) is smaller than currMin,
+- Replace currMin with nums[i] and keep iterating
+- If end is reached an no smaller numbers are found, our currMin of this loop becomes the num at the first index.
+- Now, [9, 5, 2, 7, 8] -> [2, 5, 9, 7, 8], and keep iterating
+- Now loop starts again, on i = 1
+
+- if current element (nums[i]) is smaller than currMin,
+- Replace currMin with nums[i] and keep iterating
+- If end is reached an no smaller numbers are found, our currMin of this loop becomes the num at the second index.
+- Now loop starts again, on i = 2
+- Now, [2, 5, 9, 7, 8] => [2, 5, 7, 9, 8]
+
+- if current element (nums[i]) is smaller than currMin,
+- Replace currMin with nums[i] and keep iterating
+- If end is reached an no smaller numbers are found, our currMin of this loop becomes the num at the second index.
+- Now loop starts again, on i = 3
+- Now, [2, 5, 7, 9, 8] => [2, 5, 7, 8, 9]
+
+
+\*\* Solution:
+
+
+const selectionSort = (nums) => {
+  for (let i = 0; i < nums.length; ++i) {
+    let currMin = i;
+    for (let j = i + 1; j < nums.length; ++j) {
+      if (nums[j] < nums[currMin]) {
+        currMin = j;
+      }
+    }
+
+    if (currMin !== i) {
+      let temp = nums[i];
+      nums[i] = nums[currMin];
+      nums[currMin] = temp;
+    }
+  }
+
+  return nums;
+};
+
+
  \*\*
 
 
 
-\*\* @examples: \*\*
 
-
-\*\*  \*\*
-
+ \*\*
 
 
 
 
 
+\*\* 3. Insertion sort \*\*
 
-\*\* 1. Bubble sort \*\*
-
-\*\*  \*\*
-
-\*\* @examples: \*\*
+\*\* Sort the 'nums' array using insertion sort \*\*
 
 
-
-
-\*\* 1. Bubble sort \*\*
-
-\*\*  \*\*
+\*\* 
+How it works: basically we have to divide the array into two parts, sorted and unsorted. (index 0 always counts as sorted at the beginning, so everything to the right is unsorted)
 
 \*\* @examples: \*\*
+insertionSort([3, 2, 1]) -> [1, 2, 3]
+insertionSort([0, 12, 8]) -> [0, 8, 12]
+insertionSort([3, 4, 0, 2]) -> [0, 2, 3, 4]
 
 
 
+EX: = [9, 7, 5, 2, 8, 4]
+(index 0 always counts as sorted at the beginning, so everything to the right is unsorted, so 9 is to the left and considered sorted.)
 
-\*\* 1. Bubble sort \*\*
+- We will loop through an array starting at index 1(starting from 7 in this case)(9 is assumed already sorted).
+- We will move the first num to the right of the initial sorted index into the sorted portion.
+- If it is less we will swap their position
+- Compare the two; is 7 < 9 or is 7 > 9 => 7 is less than 9,
+- [9, 7, 5, 2, 8, 4] -> [7, 9, 5, 2, 8, 4]
+- Now 7 is considered sorted, we move to the next iteration
+- We will take 5 and move to the sorted portion and compare;
+- is 5 > 9 or is 5 < 9 ? => it is less than
+- If it is less we will swap their position
+- [7, 9, 5, 2, 8, 4] ->  [7, 5, 9, 2, 8, 4]
+- Then compare 5 again to the number on its left, 7. if smaller, swap positions
+- [7, 5, 9, 2, 8, 4] -> [5, 7, 9, 2, 8, 4]
+- This continues the same way, move the next num to the sorted side, if smaller than num on its left swap and compare again until the smallest num is to the far left.
+- [5, 7, 9, 2, 8, 4] -> [2, 5, 7, 9, 8, 4] -> [2, 5, 7, 8, 9, 4] -> 
+[2, 4, 5, 7, 8, 9] = solution
 
-\*\*  \*\*
 
-\*\* @examples: \*\*
+\*\* Solution:
 
+const insertionSort = (nums) => {
+  for (let i = 1; i < nums.length; ++i) {
+    //while num to left(i - 1) is greater than current num(i)
+    while (nums[i - 1] > nums[i]) {
+      //store nums[i] in a temp variable so we don't lose value during swap
+      let temp = nums[i];
+      nums[i] = nums[i - 1];
+      nums[i - 1] = temp;
+      //decrement i to compare it to the other nums;
+      i -= 1;
+    }
+  }
+  return nums;
+};
 
 
+ \*\*
 
-\*\* 1. Bubble sort \*\*
+ \*\*
 
-\*\*  \*\*
 
-\*\* @examples: \*\*
 
 
 
+\*\* Why is bubble sort less time efficient than selection sort when they have the same best/average/worst case time complexity? \*\*
 
-\*\* 1. Bubble sort \*\*
+\*\* They both use two for loops, both are quadratic time O(n^2) worst case. How could one out perform the other then?
+- There are levels to time complexity; some algorithms may have quadratic time that does less operations, taking less time.
 
-\*\*  \*\*
+- * bubble sort: * -> [9, 5, 2, 8, 7] we compare two consecutive nums, whichever is larger we swap to the left until the smallest is all the way to the left(2 at a time, taking 4 swaps just to get 9 to the right.)
+- Then we have to back and iterate the next index first to get them sorted.
+- This example took 5 swaps to get the array sorted from [9, 5, 2, 8, 7] -> 
+[2, 5, 7, 8, 9]
 
-\*\* @examples: \*\*
+- * selection sort: * -> [9, 5, 2, 8, 7] we compare the current min number(first elem of array initially)and loop through the array looking for a smaller num;
+- If we find a smaller num, we update the current min
+- At the end of the iteration we take the current min and put it at the first index of the array.
+- [9, 5, 2, 8, 7] -> [2, 5, 9, 8, 7] -> [2, 5, 7, 9, 8] -> [2, 5, 7, 8, 9] (We only swap the integer at the end of each iteration making it more efficient than the bubble sort)
+- This example takes 3 swaps to solve this example. 
 
+- * The Selection sort took fewer swaps to solve the same array, making it more efficient by performing fewer swaps(one per iteration). * 
 
 
+ \*\*
 
 
-\*\* 1. Bubble sort \*\*
-
-\*\*  \*\*
-
-\*\* @examples: \*\*
-
-
-
-
-\*\* 1. Bubble sort \*\*
-
-\*\*  \*\*
-
-\*\* @examples: \*\*
-
-
-
-
-\*\* 1. Bubble sort \*\*
-
-\*\*  \*\*
-
-\*\* @examples: \*\*
-
-
-
-\*\* 1. Bubble sort \*\*
-
-\*\*  \*\*
-
-\*\* @examples: \*\*
-
-
-
-
-
-
-
-\*\* 1. Bubble sort \*\*
-
-\*\*  \*\*
-
-\*\* @examples: \*\*
-
-
-
-
-
-\*\* 1. Bubble sort \*\*
-
-\*\*  \*\*
-
-\*\* @examples: \*\*
-
-
-
-\*\* 1. Bubble sort \*\*
-
-\*\*  \*\*
-
-\*\* @examples: \*\*
-
-
-
-\*\* 1. Bubble sort \*\*
-
-\*\*  \*\*
-
-\*\* @examples: \*\*
-
-
-
-\*\* 1. Bubble sort \*\*
-
-\*\*  \*\*
-
-\*\* @examples: \*\*
-
-
-
-\*\* 1. Bubble sort \*\*
-
-\*\*  \*\*
-
-\*\* @examples: \*\*
 
 
 
